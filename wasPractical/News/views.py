@@ -1,14 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from News.models import News
 
 def title(request):
-    # Construct a dictionary to pass to the template engine as its context.
-    # Note the key boldmessage matches to {{ boldmessage }} in the template!
-    context_dict = {'boldmessage': 'Crunchy, creamy, cookie, candy, cupcake!'}
+    news_list = News.objects.all().order_by('-date')
 
-    # Return a rendered response to send to the client.
-    # We make use of the shortcut function to make our lives easier.
-    # Note that the first parameter is the template we wish to use.
+    context_dict = {}
+    context_dict['news'] = news_list
+
     return render(request, 'News/News.html', context=context_dict)
 
 

@@ -2,18 +2,25 @@
 <html>
 <head>
     <title>School News</title>
-<style>
-
-</style>
+    <style>
+       body {
+        background-color :yellow;
+        }
+    </style>
 </head>
     <body>
-        <h1>Schools News</h1>
         <div>
-            hey there partner! <br/>
-            <strong>{{ boldmessage }}</strong><br />
-        </div>
-        <div>
-            <p>The News!;)</p>
+        {% if news %}
+            <h1 style = "text-align: center;">School News</h1>
+            {% for index in news %}
+                <h1>{{ index.title }}</h1>
+                <i>by {{ index.author }}  {{ index.date }}</i>
+                <p>{{ index.text }}</p>
+            {% endfor %}
+
+        {% else %}
+            <strong>No pages currently in category.</strong>
+        {% endif %}
         </div>
     </body>
 </html>
